@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Post;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -60,7 +61,16 @@ class PostCommentsController extends Controller
      */
     public function show($id)
     {
-        //
+        /*$post = Post::findOrFail($id);
+        $comment = $post->comments;
+        return view('admin.comments.show', compact('comment'));*/
+
+        $post = Post::findOrFail($id);
+
+        $comments = $post->comments;
+
+
+        return view('admin.comments.show', compact('comments'));
     }
 
     /**
