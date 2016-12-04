@@ -89,9 +89,9 @@
                 <!-- /.input-group -->
             </div>
 
-            @yield('categories')
+        @yield('categories')
 
-            <!-- Side Widget Well -->
+        <!-- Side Widget Well -->
             <div class="well">
                 <h4>Side Widget Well</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus
@@ -120,6 +120,8 @@
 
 <!-- jQuery -->
 <script src="{{asset('js/libs.js')}}"></script>
+
+@yield('scripts')
 
 </body>
 
