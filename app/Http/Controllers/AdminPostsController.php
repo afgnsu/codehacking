@@ -44,7 +44,6 @@ class AdminPostsController extends Controller
      */
     public function store(PostsCreateRequest $request)
     {
-        //return $request->all();
         $input = $request->all();
         $user = Auth::user();
         if ($file = $request->file('photo_id')) {
@@ -91,13 +90,13 @@ class AdminPostsController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
-
         if ($file = $request->file('photo_id')) {
             $name = time() . $file->getClientOriginalName();
             $file->move('images', $name);
             $photo = Photo::create(['file' => $name]);
             $input['photo_id'] = $photo->id;
         }
+
         Auth::user()->posts()->whereId($id)->first()->update($input);
         return redirect('/admin/posts');
     }
@@ -122,8 +121,6 @@ class AdminPostsController extends Controller
         $post = Post::findOrFail($id);
         $categories = Category::all();
         $comments = $post->comments()->whereIsActive(1)->get();
-
-
         return view('post', compact('post', 'categories', 'comments'));
     }
 }
